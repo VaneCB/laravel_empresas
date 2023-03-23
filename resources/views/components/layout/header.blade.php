@@ -1,4 +1,4 @@
-<div class="bg-header h-15v relative flex w-full flex flex-row justify-between p-5">
+<div class="bg-header h-15v relative flex w-full flex flex-row justify-around p-5">
 <img class="h-10v pt-4 p-2" src="{{asset("img/logopng.png")}}" alt="logo">
 
 <h1 class="max-h-full text-6xl text-white">Gestión de empresas</h1>

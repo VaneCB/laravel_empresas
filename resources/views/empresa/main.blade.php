@@ -83,6 +83,7 @@
             >
         </button>
     </div>
+    <script src="./TW-ELEMENTS-PATH/dist/js/index.min.js"></script>
 @endsection
 
 
