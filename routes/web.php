@@ -17,7 +17,7 @@ use App\Http\Controllers\ProductoController;
 */
 Route::resource("empresas",EmpresaController::class);
 Route::resource("productos",ProductoController::class);
-Route::view ("main","empresa.main");
+Route::view ("main","main");
 Route::get('/', function () {
     return view('welcome');
 });

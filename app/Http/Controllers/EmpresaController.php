@@ -16,7 +16,7 @@ class EmpresaController extends Controller
 
         $empresas=Empresa::paginate(10);
         return view("empresa.listado", ['empresas'=>$empresas]);
-        //
+
     }
 
     /**
@@ -24,7 +24,7 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        //
+        return view("empresa.formulario");
     }
 
     /**
@@ -32,7 +32,9 @@ class EmpresaController extends Controller
      */
     public function store(StoreEmpresaRequest $request)
     {
-        //
+        $empresa = new Empresa($request->input());
+        $empresa->saveOrFail();
+        return redirect(route("empresas.index"));
     }
 
     /**

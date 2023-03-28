@@ -35,17 +35,17 @@
                 <li class="p-2" data-te-nav-item-ref>
                     <a
                         class="text-white disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                        href="#"
+                        href="{{route('empresas.index')}}"
                         data-te-nav-link-ref
-                    >Proyectos</a
+                    >Empresas</a
                     >
                 </li>
                 <li class="p-2" data-te-nav-item-ref>
                     <a
                         class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                        href="#"
+                        href="{{route('productos.index')}}"
                         data-te-nav-link-ref
-                    >About</a
+                    >Productos</a
                     >
                 </li>
                 <li class="p-2" data-te-nav-item-ref>

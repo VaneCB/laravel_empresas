@@ -1,6 +1,7 @@
 
 @extends('layout')
 @section ('main')
+    <x-a href="{{route('empresas.create')}}">Crear Empresa</x-a>
     <table class="bg-[#dfe7f8d9] table auto border-collapse border-spacing-2 border border-slate-400 mx-auto">
         <caption class="text-2xl">Listado de empresas</caption>
         <tr>

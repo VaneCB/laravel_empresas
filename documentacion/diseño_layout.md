@@ -22,5 +22,5 @@
 1. Creo una nueva ruta que retorne una pagina que extienda de layout
  - Creamos la ruta
  - Creo la pagina main.blade.php que extienda de layout
-    [main.blade.php](/resources/views/empresa/main.blade.php)
+    [main.blade.php](/resources/views/main.blade.php)
 2. 
