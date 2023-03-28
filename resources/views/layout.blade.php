@@ -17,7 +17,7 @@
 
 <x-layout.nav/>
 
-<main class="bg-main">
+<main class="bg-main w-auto">
     @yield ('main')
 </main>
 <x-layout.footer/>

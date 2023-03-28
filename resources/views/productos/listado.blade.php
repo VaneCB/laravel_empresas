@@ -28,15 +28,7 @@
                         <x-primary-button>Borrar</x-primary-button>
                     </form>
                 </td>
-                <td>
-
-                  <form action="{{route('productos.edit',$producto->cod)}}" method="post">
-                      @method('EDIT')
-                      @csrf
-
-                        <x-primary-button>Editar</x-primary-button>
-                        </form>
-                </td>
+                <td><x-a href="{{route('productos.edit', $producto->cod)}}">Editar</x-a></td>
             </tr>
         @endforeach
     </table>

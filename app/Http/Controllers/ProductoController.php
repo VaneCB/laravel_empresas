@@ -51,8 +51,8 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        $producto->edit();
-        return view("productos.formulario");
+
+        return view("productos.formulario_edit", ['producto'=>$producto]);
 
     }
 
@@ -61,7 +61,9 @@ class ProductoController extends Controller
      */
     public function update(UpdateProductoRequest $request, Producto $producto)
     {
-
+    $datos = $request->input();
+    $producto->update($datos);
+    return redirect(route("productos.index"));
     }
 
     /**
