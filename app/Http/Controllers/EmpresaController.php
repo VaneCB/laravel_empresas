@@ -50,7 +50,7 @@ class EmpresaController extends Controller
      */
     public function edit(Empresa $empresa)
     {
-        //
+        return view("empresa.formulario_edit", ['empresa'=>$empresa]);
     }
 
     /**
@@ -58,7 +58,11 @@ class EmpresaController extends Controller
      */
     public function update(UpdateEmpresaRequest $request, Empresa $empresa)
     {
-        //
+
+        $info = $request->input();
+        $empresa->update($info);
+        return redirect(route("empresas.index"));
+
     }
 
     /**
@@ -66,6 +70,7 @@ class EmpresaController extends Controller
      */
     public function destroy(Empresa $empresa)
     {
-        //
+        $empresa->delete();
+        return redirect(route("empresas.index"));
     }
 }

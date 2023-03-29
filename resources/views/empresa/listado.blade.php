@@ -14,6 +14,15 @@
                 <td class="border border-slate-300 p-2 bg-[#eff6ff]">{{$empresa->id}}</td>
                 <td class="border border-slate-300 p-2">{{$empresa->name}}</td>
                 <td class="border border-slate-300 p-2">{{$empresa->address}}</td>
+                <td>
+                    <form action="{{route('empresas.destroy',$empresa->id)}}" method="post">
+                        @method('DELETE')
+                        @csrf
+
+                        <x-primary-button>Borrar</x-primary-button>
+                    </form>
+                </td>
+                <td><x-a href="{{route('empresas.edit', $empresa->id)}}">Editar</x-a></td>
             </tr>
         @endforeach
     </table>
