@@ -16,9 +16,13 @@ class EmpresaFactory extends Factory
      */
     public function definition(): array
     {
+        $dni = fake()-> randomNumber(8);
+        $letra = chr(($dni % 27) + ord('A'));
+        $dni="$dni-$letra";
         return [
             'name'=>fake()->name(),
-            'address'=>fake()->address()
+            'address'=>fake()->address(),
+            'DNI'=>$dni
             //
         ];
     }

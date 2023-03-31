@@ -1,7 +1,9 @@
 @extends('layout')
 @section ('main')
+    <div class="mx-2 mt-2">
+        <x-a href="{{route('productos.create')}}">Crear Producto</x-a>
+    </div>
 
-    <x-a href="{{route('productos.create')}}">Crear Producto</x-a>
     <table class="bg-[#dfe7f8d9] table auto border-collapse border-spacing-2 border border-slate-400 mx-auto">
         <caption class="text-2xl">Listado de productos</caption>
         <tr>

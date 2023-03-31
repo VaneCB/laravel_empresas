@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
 {
-    protected $fillable=['name','address'];
+    protected $fillable=['name','address','DNI'];
     use HasFactory;
 }

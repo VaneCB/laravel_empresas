@@ -1,6 +1,5 @@
 @extends ('layout')
 @section ('main')
-
     <div
         id="carouselExampleControls"
         class="relative"
@@ -83,7 +82,7 @@
             >
         </button>
     </div>
-    <script src="./TW-ELEMENTS-PATH/dist/js/index.min.js"></script>
+
 @endsection
 
 

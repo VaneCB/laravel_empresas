@@ -15,7 +15,7 @@
         <input class="inline-block rounded-md " type="text" name="PVP" id="" value="{{$producto->PVP}}">
         <label class="block underline decoration-sky-800 underline decoration-double pb-1">Familia</label>
         <input class="inline-block pb-1 rounded-md " type="text" name="familia" id="" value="{{$producto->familia}}">
-        <div class="overflow-y-auto">
+        <div class="overflow-y-auto mt-2">
             <button class="block cursor-pointer rounded-full pt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Guardar</button>
         </div>
     </form>

@@ -1,5 +1,5 @@
 <nav
-    class="relative flex w-full flex-wrap items-center justify-between bg-neutral-900 py-3 text-neutral-200 shadow-lg lg:flex-wrap lg:justify-start"
+    class="relative flex w-full flex-wrap items-center justify-between bg-neutral-900 py-3 text-neutral-200 shadow-lg lg:flex-wrap lg:justify-start mb-2"
     data-te-navbar-ref>
     <div class="flex w-full flex-wrap items-center justify-between px-6">
         <button
@@ -27,7 +27,7 @@
             class="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto"
             id="navbarSupportedContent4"
             data-te-collapse-item>
-            <a class="pr-2 text-xl font-semibold text-white" href="#">Menu</a>
+            <a class="pr-2 text-xl font-semibold text-white" href="{{url('/main')}}">Menu</a>
             <!-- Left links -->
             <ul
                 class="list-style-none mr-auto flex flex-col pl-0 lg:flex-row"
@@ -106,5 +106,5 @@
             </div>
         </div>
         <!-- Right elements -->
-    </div>
+
 </nav>
