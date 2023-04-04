@@ -13,9 +13,13 @@ class EmpresaController extends Controller
      */
     public function index()
     {
+        $empresas=Empresa::all();
+        $campos =array_keys($empresas[0]->getAttributes());
+        unset($campos[array_search('created_at',$campos)]);
+        unset($campos[array_search('updated_at',$campos)]);
 
-        $empresas=Empresa::paginate(10);
-        return view("empresa.listado", ['empresas'=>$empresas]);
+
+        return view("empresa.listado", ['filas'=>$empresas, 'campos'=>$campos,'tabla'=>'Empresas']);
 
     }
 
