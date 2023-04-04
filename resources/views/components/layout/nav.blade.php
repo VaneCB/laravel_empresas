@@ -51,9 +51,9 @@
                 <li class="p-2" data-te-nav-item-ref>
                     <a
                         class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                        href="#"
+                        href="{{route('alumnos.index')}}"
                         data-te-nav-link-ref
-                    >Contacta</a
+                    >Alumnos</a
                     >
                 </li>
             </ul>
