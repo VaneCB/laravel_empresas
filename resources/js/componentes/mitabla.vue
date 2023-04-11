@@ -1,5 +1,6 @@
 <template>
     <table class="bg-[#dfe7f8d9] table auto border-collapse border-spacing-2 border border-slate-400 mx-auto">
+        <h1 v-html="mensaje"></h1>
         <caption>{{ tabla }}</caption>
 
 
@@ -17,7 +18,7 @@
             </th>
             <th class="border border-slate-300 bg-[#0c4a6e] text-white text-center" colspan="3">Opciones</th>
         </tr>
-        <tr v-for='(fila,index) in filas'>
+        <tr v-for='(fila) in filas.data'>
             <td class="border border-slate-300 p-2 text-center" v-for='(valor) in fila'>{{ valor }}</td>
             <td class="border border-slate-300 p-2 text-center">
                 <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2  transition ease-in-out duration-150" @click='editar(fila.id)'>
@@ -25,24 +26,33 @@
                 </button>
             </td>
             <td class="border border-slate-300 p-2 text-center">
-                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2  transition ease-in-out duration-150" @click='editar(fila.id)'>
+                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2  transition ease-in-out duration-150" @click='borrar(fila.id)'>
                     Borrar
                 </button>
             </td>
             <td class="border border-slate-300 p-2 text-center">
-                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2  transition ease-in-out duration-150" @click='editar(fila.id)'>
+                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2  transition ease-in-out duration-150" @click='consultar(fila.id)'>
                     Consultar
                 </button>
             </td>
         </tr>
 
     </table>
-
+    <tailwind-pagination
+        :data = "filas"
+        @pagination-change-page="getResults"
+    />
 </template>
 
 <script>
+import axios from "axios";
+import {TailwindPagination} from 'laravel-vue-pagination';
+
 export default {
     name: "mitabla",
+    components: {
+        TailwindPagination
+    },
     props:['filas_serializadas','campos_serializados','tabla'],
     data() {
         return{
@@ -50,17 +60,32 @@ export default {
             campos:Array,
             sortOrder: 1,
             valor: Array,
-            len_campo: Array
+            len_campo: Array,
+            mensaje:String
         }
     },
     mounted(){
         this.filas= JSON.parse(this.filas_serializadas);
         this.campos= JSON.parse(this.campos_serializados);
-        this.campos.forEach((campo,index)=>{
+        this.mensaje="";
+        /*this.campos.forEach((campo,index)=>{
           this.len_campo[index]= campo.length*2
-        })
+        })*/
     },
     methods: {
+        getResults(page = 1) {
+            let url = window.location.href;
+            let self = this;
+            axios.get(
+                url + "/paginate?page=" + page)
+                .then(function (response) {
+                    self.filas = response.data;
+                    console.log("Respuesta " + response.data);
+                })
+                .catch(function (error) {
+                    console.error("ERROR"+error);
+                });
+        },
         ordenar: function (campo) {
             this.filas.sort((a, b) => {
                 if (a[campo] > b[campo]) {
@@ -87,6 +112,21 @@ export default {
             window.location.href = url;
 
         },
+        borrar: function(id) {
+            let url = window.location.href;
+            if (url.endsWith('/')){
+                url = url.slice(0, -1);
+            }
+            url = url +"/" + id;
+            axios.delete(url)
+                .then((response) =>{
+                    this.filas = response.data;
+                    this.mensaje="Se ha borrado en la tabla " +this.tabla +" " + "la fila de id" +id;
+                })
+                .catch((e)=>{
+              this.mensaje="<span style='color:red'>Error borrando en la tabla " +this.table +" " + "la fila de id" +id+"</span>";
+            })
+        }
     },
 }
 </script>

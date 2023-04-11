@@ -8,16 +8,21 @@ use App\Models\Empresa;
 
 class EmpresaController extends Controller
 {
+
+    public function get_paginate(){
+        $empresas=Empresa::paginate(10);
+        return response($empresas);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $empresas=Empresa::all();
+        $empresas=Empresa::paginate(10);
         $campos =array_keys($empresas[0]->getAttributes());
         unset($campos[array_search('created_at',$campos)]);
         unset($campos[array_search('updated_at',$campos)]);
-
+    $campos;
 
         return view("empresa.listado", ['filas'=>$empresas, 'campos'=>$campos,'tabla'=>'Empresas']);
 
@@ -75,6 +80,8 @@ class EmpresaController extends Controller
     public function destroy(Empresa $empresa)
     {
         $empresa->delete();
-        return redirect(route("empresas.index"));
+        $empresas =Empresa::paginate(10);
+        return response($empresas);
     }
 }
+
