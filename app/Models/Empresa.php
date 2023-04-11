@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
 {
-    //protected $fillable=['name','address','DNI'];
+    protected $fillable=['name','address','DNI'];
     protected $hidden= ['created_at', 'updated_at'];
     use HasFactory;
 }

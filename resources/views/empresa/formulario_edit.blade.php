@@ -4,6 +4,8 @@
     <form class= "bg-[#eff6ff] prose md:prose-lg lg:prose-xl rounded-b-lg  outline outline-offset-2 outline-cyan-500  mt-4 mb-4 overflow-y-auto w-4/6 p-3 mx-auto flex flex-col items-center justify-center" action="{{route('empresas.update',$empresa->id)}}" method="post">
         @csrf
         @method('PUT')
+        <label class="block underline decoration-sky-800 underline decoration-double pb-1">ID</label>
+        <input class="inline-block rounded-md " type="text" name="name" id="" value="{{$empresa->id}}">
         <label class="block underline decoration-sky-800 underline decoration-double pb-1">Nombre</label>
         <input class="inline-block rounded-md " type="text" name="name" id="" value="{{$empresa->name}}">
         <label class="block underline decoration-sky-800 underline decoration-double pb-1">Dirección</label>
