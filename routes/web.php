@@ -16,12 +16,14 @@ use App\Http\Controllers\AlumnoController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get("empresas/paginate",[ \App\Http\Controllers\EmpresaController::class,"get_paginate"] );
 Route::resource("empresas",EmpresaController::class);
 Route::resource("alumnos",AlumnoController::class);
 Route::resource("productos",ProductoController::class);
 Route::view ("main","main");
 
-Route::get("empresas/paginate",[ \App\Http\Controllers\EmpresaController::class,"get_paginate"] );
+
 
 Route::get('/', function () {
     return view('welcome');

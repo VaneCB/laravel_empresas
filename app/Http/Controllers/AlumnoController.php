@@ -8,13 +8,23 @@ use App\Models\Alumno;
 
 class AlumnoController extends Controller
 {
+
+    public function get_paginate(){
+        $empresas=Alumno::paginate(10);
+        return response($empresas);
+    }
     /**
      * Display a listing of the resource.
      */
+
+
     public function index()
     {
         $alumnos=Alumno::paginate(10);
-        return view("alumno.listado", ['alumnos'=>$alumnos]);
+        $campos =array_keys($alumnos[0]->getAttributes());
+        unset($campos[array_search('created_at',$campos)]);
+        unset($campos[array_search('updated_at',$campos)]);
+        return view("empresa.listado", ['filas'=>$alumnos, 'campos'=>$campos,'tabla'=>'Alumnos']);
     }
 
     /**

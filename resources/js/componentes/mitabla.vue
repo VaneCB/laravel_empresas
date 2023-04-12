@@ -1,37 +1,39 @@
 <template>
     <table class="bg-[#dfe7f8d9] table auto border-collapse border-spacing-2 border border-slate-400 mx-auto">
         <h1 v-html="mensaje"></h1>
-        <caption>{{ tabla }}</caption>
+        <caption class="titulo">{{ tabla }}</caption>
 
 
         <tr>
-            <th class="border border-slate-300 bg-[#0c4a6e] text-white text-center" v-for='(campo,index) in campos' >
-                <input class="text-center text-black w-full"
+            <th class="cabeceras" v-for='(campo,index) in campos' >
+                <input class="text-center bg-cyan-50 text-black w-full"
                        @keyup="filtra(campo,valor[index])"
                        type="text"
                        :size=len_campo[index]
                        v-model='valor[index]'
                 /><br>
-                <button @click='ordenar(campo)'>
+
+                <button @click='ordenar(campo)'>⇑ ⇓
                     {{ campo }}
                 </button>
+
             </th>
-            <th class="border border-slate-300 bg-[#0c4a6e] text-white text-center" colspan="3">Opciones</th>
+            <th class="cabeceras" colspan="3">Opciones</th>
         </tr>
         <tr v-for='(fila) in filas.data'>
-            <td class="border border-slate-300 p-2 text-center" v-for='(valor) in fila'>{{ valor }}</td>
-            <td class="border border-slate-300 p-2 text-center">
-                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2  transition ease-in-out duration-150" @click='editar(fila.id)'>
+            <td class="filas" v-for='(valor) in fila'>{{ valor }}</td>
+            <td class="filas">
+                <button class="boton" @click='editar(fila.id)'>
                     Editar
                 </button>
             </td>
-            <td class="border border-slate-300 p-2 text-center">
-                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2  transition ease-in-out duration-150" @click='borrar(fila.id)'>
+            <td class="filas">
+                <button class="boton" @click='borrar(fila.id)'>
                     Borrar
                 </button>
             </td>
-            <td class="border border-slate-300 p-2 text-center">
-                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2  transition ease-in-out duration-150" @click='consultar(fila.id)'>
+            <td class="filas">
+                <button class="boton" @click='consultar(fila.id)'>
                     Consultar
                 </button>
             </td>
@@ -86,8 +88,9 @@ export default {
                     console.error("ERROR"+error);
                 });
         },
+
         ordenar: function (campo) {
-            this.filas.sort((a, b) => {
+            this.filas.data.sort((a, b) => {
                 if (a[campo] > b[campo]) {
                     return this.sortOrder === 1 ? 1 : -1;
                 } else {
@@ -99,7 +102,7 @@ export default {
         },
         filtra: function (campo, valor) {
             this.filas = JSON.parse(this.filas_serializadas);
-            this.filas = this.filas.filter((fila) => {
+            this.filas.data = this.filas.data.filter((fila) => {
                     let texto = new String(fila[campo]);
                     if (texto.indexOf(valor) > -1)
                         return fila
@@ -133,5 +136,20 @@ export default {
 
 <style scoped>
 
+.titulo{
+    @apply text-cyan-500 text-6xl
+}
+
+.boton{
+    @apply inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2  transition ease-in-out duration-150
+}
+
+.filas{
+    @apply border border-slate-300 p-2 text-center
+}
+
+.cabeceras{
+    @apply border border-slate-300 bg-[#0c4a6e] text-white text-center
+}
 </style>
 
