@@ -9,10 +9,6 @@ use App\Models\Alumno;
 class AlumnoController extends Controller
 {
 
-    public function get_paginate(){
-        $empresas=Alumno::paginate(10);
-        return response($empresas);
-    }
     /**
      * Display a listing of the resource.
      */
@@ -24,7 +20,7 @@ class AlumnoController extends Controller
         $campos =array_keys($alumnos[0]->getAttributes());
         unset($campos[array_search('created_at',$campos)]);
         unset($campos[array_search('updated_at',$campos)]);
-        return view("empresa.listado", ['filas'=>$alumnos, 'campos'=>$campos,'tabla'=>'Alumnos']);
+        return view("alumno.listado", ['filas'=>$alumnos, 'campos'=>$campos,'tabla'=>'Alumnos']);
     }
 
     /**
@@ -56,7 +52,7 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
-        //
+        return view("alumno.formulario_edit", ['empresa'=>$alumno]);
     }
 
     /**
@@ -64,7 +60,9 @@ class AlumnoController extends Controller
      */
     public function update(UpdateAlumnoRequest $request, Alumno $alumno)
     {
-        //
+        $info = $request->input();
+        $alumno->update($info);
+        return redirect(route("alumnos.index"));
     }
 
     /**

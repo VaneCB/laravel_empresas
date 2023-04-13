@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\IdiomaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,10 @@ use App\Http\Controllers\AlumnoController;
 
 Route::get("empresas/paginate",[ \App\Http\Controllers\EmpresaController::class,"get_paginate"] );
 Route::resource("empresas",EmpresaController::class);
+Route::get("alumnos/paginate",[ \App\Http\Controllers\AlumnoController::class,"get_paginate"] );
 Route::resource("alumnos",AlumnoController::class);
 Route::resource("productos",ProductoController::class);
+Route::resource("idiomas",IdiomaController::class);
 Route::view ("main","main");
 
 
