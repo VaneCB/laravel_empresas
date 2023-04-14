@@ -24,6 +24,7 @@ Route::get("alumnos/paginate",[ \App\Http\Controllers\AlumnoController::class,"g
 Route::resource("alumnos",AlumnoController::class);
 Route::resource("productos",ProductoController::class);
 Route::resource("idiomas",IdiomaController::class);
+Route::get("idiomas/paginate",[ \App\Http\Controllers\IdiomaController::class,"get_paginate"] );
 Route::view ("main","main");
 
 

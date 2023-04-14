@@ -28,7 +28,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-
+        return view("alumno.formulario");
     }
 
     /**
@@ -36,7 +36,9 @@ class AlumnoController extends Controller
      */
     public function store(StoreAlumnoRequest $request)
     {
-        //
+        $alumno = new Alumno($request->input());
+        $alumno->saveOrFail();
+        return redirect(route("alumnos.index"));
     }
 
     /**
@@ -52,7 +54,7 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
-        return view("alumno.formulario_edit", ['empresa'=>$alumno]);
+        return view("alumno.formulario_edit", ['alumno'=>$alumno]);
     }
 
     /**
@@ -70,6 +72,8 @@ class AlumnoController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
-        //
+        $alumno->delete();
+        $alumnos =Alumno::paginate(10);
+        return response($alumnos);
     }
 }

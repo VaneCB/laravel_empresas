@@ -25,7 +25,7 @@ class IdiomaController extends Controller
      */
     public function create()
     {
-        //
+        return view('idioma.formulario');
     }
 
     /**
@@ -33,7 +33,9 @@ class IdiomaController extends Controller
      */
     public function store(StoreIdiomaRequest $request)
     {
-        //
+        $idioma = new Idioma($request->input());
+        $idioma->saveOrFail();
+        return redirect(route("idiomas.index"));
     }
 
     /**
@@ -49,7 +51,7 @@ class IdiomaController extends Controller
      */
     public function edit(Idioma $idioma)
     {
-        //
+        return view('idioma.formulario_edit', ['idioma' => $idioma]);
     }
 
     /**
@@ -57,7 +59,9 @@ class IdiomaController extends Controller
      */
     public function update(UpdateIdiomaRequest $request, Idioma $idioma)
     {
-        //
+        $info = $request->input();
+        $idioma->update($info);
+        return redirect(route("idiomas.index"));
     }
 
     /**
@@ -65,6 +69,8 @@ class IdiomaController extends Controller
      */
     public function destroy(Idioma $idioma)
     {
-        //
+        $idioma->delete();
+        $idiomas =Idioma::paginate(10);
+        return response($idiomas);
     }
 }
